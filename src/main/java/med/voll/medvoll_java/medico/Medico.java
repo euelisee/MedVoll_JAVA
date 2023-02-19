@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import med.voll.medvoll_java.endereco.DadosEndereco;
 import med.voll.medvoll_java.endereco.Endereco;
+
 @Table(name = "medicos")
 @Entity(name = "Medico")
 @Getter

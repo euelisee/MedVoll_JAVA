@@ -26,19 +26,20 @@ public class MedicoController {
 
     @GetMapping
     public Page<DadosListagemMedico> listar(Pageable paginacao) {
-       // return repository.findAll(paginacao).map(DadosListagemMedico::new); //tráz a listagem lógica, mesmo que não seja excluida totalmente do BD
+        // return repository.findAll(paginacao).map(DadosListagemMedico::new); //tráz a listagem lógica, mesmo que não seja excluida totalmente do BD
         return repository.findAllByAtivoTrue(paginacao).map(DadosListagemMedico::new); //listagem apenas como true no BD
     }
 
     @PutMapping
     @Transactional
     public void atualizar(@RequestBody @Valid DadosAtualizacaoMedico dados) {
-            var medico = repository.getReferenceById(dados.id());
-            medico.atualizarInformacoes(dados);
+        var medico = repository.getReferenceById(dados.id());
+        medico.atualizarInformacoes(dados);
     }
+
     @Transactional
     @DeleteMapping("/{id}") //exclusao lógica , não deleta do BD
-    public void excluir(@PathVariable Long id){
+    public void excluir(@PathVariable Long id) {
         var medico = repository.getReferenceById(id);
         medico.excluir();
     }
